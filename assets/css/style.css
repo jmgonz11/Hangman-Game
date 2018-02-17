@@ -1,0 +1,59 @@
+  
+  h1 {
+    text-align: center;
+    margin-top: 150px;
+    font-size: 60px;
+  }
+  
+  h2 {
+    margin-top:  50px;
+    font-size: 60px;
+
+  }
+
+
+
+
+
+
+#guessedWord {
+    margin: 2em 0;
+    text-align: center;
+  }
+  
+  #word b {
+    visibility: hidden;
+  }
+  
+  #word span {
+    display: inline-block;
+    border-bottom: 2px solid #0a48cf;
+    margin: 5px;
+    min-width: 1em;
+  }
+  
+  #word span.yep b {
+    visibility: visible;
+  }
+  
+  #word span.space {
+    border-bottom: 0;
+  }
+  
+  #gameover {
+    display: none;
+  }
+  
+  #won {
+    display: none;
+  }
+  
+  body {
+    font-family: 'Tahoma', bold;
+    color: #0f7be0;
+    background-image: url("../assets/images/turtle.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 50px;
+    margin-top: 60px;
+  }

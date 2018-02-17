@@ -1,53 +1,137 @@
-// start hangman game! 
-
-prompt('Press any key to get started!');
-
-
-// Creatures of the ocean for the game. 
-
-var animalType = ['Starfish', 'Dolphin', 'Turtle', 'Shark', 'Jelly Fish','Crab', 'Mantra Ray', 'Fish', "Coral']
-]
-
-// We need to choose a random word from the creatures above. 
-
-var sharkType = sharkTypeArr[Math.floor(Math.random() * sharkTypeArr.length)];
-
-
-// global variables 
-
-var s;
-var count = 0;
-var answerArray = [];
-
-
-// filling the answer array with underscores as required
-// number of underscores correlates to the randomly selected word in the array
-
-function startUp() {
-  for (var i = 0; i < sharkType.length; i++) {
-    answerArray[i] = "_";
-  }
-
-  // putting in a string
-  s = answerArray.join(" ");
-  document.getElementById("answer").innerHTML = s;
+window.onload = function() {
+  setUpRound();
 }
+var words = ["Dolphin", "Shark", "Turtle", "Jellyfish", "Eel", "Coral", "Barnacle", "Fish", "Mermaid"]
 
-function letter() {
-  var letter = document.getElementById("letter").value;
+var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
-  if (letter.length > 0) {
-    for (var i = 0; i < sharkType.length; i ++) {
-      if (sharkType[i] === letter) {
-        answerArray[i] = letter;
+
+
+// variables that are global 
+var chosenWord;
+var chosenletters = [];
+var guessedLetters = [];
+var incorrect;
+var wins = 0;
+var losses = 0;
+
+
+
+function setUpRound() {
+
+  var wordContainer = document.getElementById("guessedWord"); 
+
+  wordContainer.innerHTML = "";
+
+  document.getElementById("history").innerHTML = '';
+
+  document.getElementById("points").innerHTML = wins;
+
+  document.getElementById("losses").innerHTML = losses;
+
+  document.getElementById("gameover").removeAttribute('style');
+
+  document.getElementById("won").removeAttribute('style');
+
+  chosenWord = words[Math.floor(Math.random() * words.length)].toLowerCase();
+
+  chosenLetters = chosenWord.split(""); 
+  
+  guessedLetters = [];
+  
+
+  incorrect = 7; 
+  
+
+  document.getElementById("incorrect").innerHTML = incorrect;
+
+
+  for ( i = 0; i < activeLetters.length; i++ ) {
+
+    var tile = document.createElement("span");
+    tile.className = activeLetters[i] + ' nope';
+    if ( activeLetters[i] == " " ) {
+      tile.className = "space yep"; //Making spaces visible by default
+    } // end if
+    tile.innerHTML = "<b>" + activeLetters[i] + "</b>";
+    wordContainer.appendChild(tile); //Adding tiles to #word
+  } // end for
+} 
+
+
+
+function evalLetter() {
+  if(incorrect > 0) {
+    var event = window.event;
+    var inputLetter = event.key;
+
+    if(alphabet.indexOf(inputLetter) > -1) { //check if input is a letter in the alphabet
+
+      //Checking to see if the inputted letter has been used during this round
+      var used = guessedLetters.indexOf(inputLetter);
+
+      //If letter has not been used
+      if ( used === -1 ) {
+        guessedLetters.push(inputLetter);
+        //Update the history div
+        var history = guessedLetters.join(" ");
+        document.getElementById("history").innerHTML = history;
+
+        //If the letter is correct then show the tile
+        if (chosenLetters.indexOf(inputLetter) > -1 ) {
+          var spans = document.getElementsByClassName(inputLetter);
+
+          for ( i = 0; i < spans.length; i++ ) {
+            var classes = inputLetter + " yep";
+            spans[i].className = classes;
+          } 
+
+         
+          var remainingLetters = document.getElementsByClassName("nope");
+          if ( remainingLetters.length == 0 ) {
+            wins = wins + 1;
+            document.getElementById("wins").innerHTML = wins;
+
+              //Show the Game Over div
+              document.getElementById("won").style.display = "block";
+              countDown();
+
+          }
+
+           } // end if
+        else {
+          incorrect = incorrect - 1;
+          document.getElementById("incorrect").innerHTML = incorrect;
+          if ( incorrect == 0 ) {
+            //Show the Game Over div
+            document.getElementById("gameover").style.display = "block";
+            losses = losses + 1;
+            document.getElementById("losses").innerHTML = losses;
+            countDown();
+
+          }
+        } // end else
+
       }
     }
-    count++;
-    document.getElementById("counter").innerHTML = "No of clicks: " + count;
-    document.getElementById("answer").innerHTML = answerArray.join(" ");
-  }
-  if(count>5) {
-    document.getElementById("stat").innerHTML = "You should have guessed it by now!";
   }
 }
 
+function countDown() {
+  var counter = 3;
+  var countDown = document.getElementById("countDown");
+  countDown.innerHTML = "The next round will start in 3 seconds.";
+  var id;
+
+
+  id = setInterval(function() {
+      counter--;
+      if(counter < 0) {
+        countDown.innerHTML = '';
+        setUpRound();
+        clearInterval(id);
+      } else {
+          countDown.innerHTML = "The next round will start in " + counter.toString() + " seconds.";
+      }
+  }, 1000);
+}
