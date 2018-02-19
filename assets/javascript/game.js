@@ -49,18 +49,18 @@ function setUpRound() {
   for ( i = 0; i < activeLetters.length; i++ ) {
 
     var tile = document.createElement("span");
-    tile.className = activeLetters[i] + ' nope';
+    tile.className = activeLetters[i] + 'You Lost!';
     if ( activeLetters[i] == " " ) {
-      tile.className = "space yep"; //Making spaces visible by default
-    } // end if
-    tile.innerHTML = "<b>" + activeLetters[i] + "</b>";
-    wordContainer.appendChild(tile); //Adding tiles to #word
-  } // end for
+      tile.className = "bar"; 
+    } 
+    tile.innerHTML = "<b>" + chosenLetters[i] + "</b>";
+    wordContainer.appendChild(tile); 
+  } 
 } 
 
 
 
-function evalLetter() {
+function picks() {
   if(incorrect > 0) {
     var event = window.event;
     var inputLetter = event.key;
@@ -68,13 +68,13 @@ function evalLetter() {
     if(alphabet.indexOf(inputLetter) > -1) { //check if input is a letter in the alphabet
 
       //Checking to see if the inputted letter has been used during this round
-      var used = guessedLetters.indexOf(inputLetter);
+      var used = chosenLetters.indexOf(inputLetter);
 
       //If letter has not been used
       if ( used === -1 ) {
-        guessedLetters.push(inputLetter);
+        chosenLetters.push(inputLetter);
         //Update the history div
-        var history = guessedLetters.join(" ");
+        var history = chosenLetters.join(" ");
         document.getElementById("history").innerHTML = history;
 
         //If the letter is correct then show the tile
@@ -82,15 +82,15 @@ function evalLetter() {
           var spans = document.getElementsByClassName(inputLetter);
 
           for ( i = 0; i < spans.length; i++ ) {
-            var classes = inputLetter + " yep";
+            var classes = inputLetter + "bar";
             spans[i].className = classes;
           } 
 
          
-          var remainingLetters = document.getElementsByClassName("nope");
+          var remainingLetters = document.getElementsByClassName("You Lost!");
           if ( remainingLetters.length == 0 ) {
             wins = wins + 1;
-            document.getElementById("wins").innerHTML = wins;
+            document.getElementById("Correct Lines").innerHTML = wins;
 
               //Show the Game Over div
               document.getElementById("won").style.display = "block";
@@ -98,13 +98,13 @@ function evalLetter() {
 
           }
 
-           } // end if
+           } 
         else {
           incorrect = incorrect - 1;
           document.getElementById("incorrect").innerHTML = incorrect;
           if ( incorrect == 0 ) {
-            //Show the Game Over div
-            document.getElementById("gameover").style.display = "block";
+           
+            document.getElementById("lost").style.display = "block";
             losses = losses + 1;
             document.getElementById("losses").innerHTML = losses;
             countDown();

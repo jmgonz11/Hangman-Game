@@ -32,15 +32,15 @@
     min-width: 1em;
   }
   
-  #word span.yep b {
+  #word span.bar b {
     visibility: visible;
   }
   
-  #word span.space {
+  #word span.losses {
     border-bottom: 0;
   }
   
-  #gameover {
+  #Lost {
     display: none;
   }
   
