@@ -11,7 +11,7 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 
 
 var chosenWord;
-var chosenletters = [];
+var chosenLetters = [];
 var guessedLetters = [];
 var incorrect;
 var wins = 0;
@@ -20,7 +20,7 @@ var losses = 0;
 
 
 function setUpRound() {
-
+console.log ("test")
 
   var wordContainer = document.getElementById("guessedWord"); 
 
@@ -34,7 +34,7 @@ function setUpRound() {
 
   document.getElementById("losses").innerHTML = losses;
 
-  document.getElementById("gameover").removeAttribute('style');
+  // document.getElementById("gameover").removeAttribute('style');
 
 
   chosenWord = words[Math.floor(Math.random() * words.length)].toLowerCase();
@@ -50,11 +50,11 @@ function setUpRound() {
   document.getElementById("incorrect").innerHTML = incorrect;
 
 
-  for ( i = 0; i < activeLetters.length; i++ ) {
+  for ( i = 0; i < guessedLetters.length; i++ ) {
 
     var tile = document.createElement("span");
-    tile.className = activeLetters[i] + 'You Lost!';
-    if ( activeLetters[i] == " " ) {
+    tile.className = guessedLetters[i] + 'You Lost!';
+    if ( guessedLetters[i] == " " ) {
       tile.className = "bar"; 
     } 
     tile.innerHTML = "<b>" + chosenLetters[i] + "</b>";
