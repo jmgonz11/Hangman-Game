@@ -8,6 +8,8 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 
 
 // variables that are global 
+
+
 var chosenWord;
 var chosenletters = [];
 var guessedLetters = [];
@@ -19,6 +21,7 @@ var losses = 0;
 
 function setUpRound() {
 
+
   var wordContainer = document.getElementById("guessedWord"); 
 
   wordContainer.innerHTML = "";
@@ -26,12 +29,13 @@ function setUpRound() {
   document.getElementById("history").innerHTML = '';
 
   document.getElementById("points").innerHTML = wins;
+  
+  document.getElementById("won").removeAttribute('style');
 
   document.getElementById("losses").innerHTML = losses;
 
   document.getElementById("gameover").removeAttribute('style');
 
-  document.getElementById("won").removeAttribute('style');
 
   chosenWord = words[Math.floor(Math.random() * words.length)].toLowerCase();
 
@@ -65,19 +69,19 @@ function picks() {
     var event = window.event;
     var inputLetter = event.key;
 
-    if(alphabet.indexOf(inputLetter) > -1) { //check if input is a letter in the alphabet
+    if(alphabet.indexOf(inputLetter) > -1) { 
 
-      //Checking to see if the inputted letter has been used during this round
+
       var used = chosenLetters.indexOf(inputLetter);
 
-      //If letter has not been used
+    
       if ( used === -1 ) {
         chosenLetters.push(inputLetter);
-        //Update the history div
+  
         var history = chosenLetters.join(" ");
         document.getElementById("history").innerHTML = history;
 
-        //If the letter is correct then show the tile
+      
         if (chosenLetters.indexOf(inputLetter) > -1 ) {
           var spans = document.getElementsByClassName(inputLetter);
 
@@ -92,7 +96,7 @@ function picks() {
             wins = wins + 1;
             document.getElementById("Correct Lines").innerHTML = wins;
 
-              //Show the Game Over div
+        
               document.getElementById("won").style.display = "block";
               countDown();
 
