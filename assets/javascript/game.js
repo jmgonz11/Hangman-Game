@@ -1,5 +1,5 @@
 window.onload = function() {
-  setUpRound();
+  gameinitalLoad();
 }
 var words = ["Dolphin", "Shark", "Turtle", "Jellyfish", "Eel", "Coral", "Barnacle", "Fish", "Mermaid"]
 
@@ -19,7 +19,7 @@ var losses = 0;
 
 
 
-function setUpRound() {
+function gameinitalLoad() {
 console.log ("test")
 
   var wordContainer = document.getElementById("guessedWord"); 
@@ -64,7 +64,7 @@ console.log ("test")
 
 
 
-function picks() {
+function chosenLetters() {
   if(incorrect > 0) {
     var event = window.event;
     var inputLetter = event.key;
@@ -72,18 +72,18 @@ function picks() {
     if(alphabet.indexOf(inputLetter) > -1) { 
 
 
-      var used = chosenLetters.indexOf(inputLetter);
+      var used = chosenLetters.indexOf(chosenLetter);
 
     
       if ( used === -1 ) {
-        chosenLetters.push(inputLetter);
+        chosenLetters.push(chosenLetter);
   
         var history = chosenLetters.join(" ");
         document.getElementById("history").innerHTML = history;
 
       
         if (chosenLetters.indexOf(inputLetter) > -1 ) {
-          var spans = document.getElementsByClassName(inputLetter);
+          var spans = document.getElementsByClassName(chosenLetter);
 
           for ( i = 0; i < spans.length; i++ ) {
             var classes = inputLetter + "bar";
