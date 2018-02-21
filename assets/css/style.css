@@ -16,11 +16,11 @@
   body {
     font-family: 'Tahoma', bold;
     color: #0f7be0;
-    background-image: url "/assets/images/turtle.jpg";
     background-repeat: no-repeat;
     background-position: center;
     font-size: 50px;
     margin-top: 60px;
+    background-image: url "/assets/images/turtle.jpg";
   }
 
 
@@ -33,7 +33,9 @@
   #word b {
     visibility: hidden;
   }
-  
+
+   
+
   #word span {
     display: inline-block;
     border-bottom: 2px solid #0a48cf;
@@ -41,20 +43,7 @@
     min-width: 1em;
   }
   
-  #word span.bar b {
-    visibility: visible;
-  }
-  
-  #word span.losses {
-    border-bottom: 0;
-  }
-  
-  #Lost {
-    display: none;
-  }
-  
-  #won {
-    display: none;
-  }
+
+ 
   
 

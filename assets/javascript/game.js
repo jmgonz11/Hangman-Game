@@ -22,7 +22,7 @@ var losses = 0;
 function gameinitalLoad() {
 console.log ("test")
 
-  var wordContainer = document.getElementById("guessedWord"); 
+  var wordContainer = document.getElementById("words"); 
 
   wordContainer.innerHTML = "";
 
@@ -37,14 +37,14 @@ console.log ("test")
   // document.getElementById("gameover").removeAttribute('style');
 
 
-  chosenWord = words[Math.floor(Math.random() * words.length)].toLowerCase();
+  // chosenWord = words[Math.floor(Math.random() * words.length)].toLowerCase();
 
   chosenLetters = chosenWord.split(""); 
   
   guessedLetters = [];
   
 
-  incorrect = 7; 
+  incorrect = 5; 
   
 
   document.getElementById("incorrect").innerHTML = incorrect;
@@ -55,7 +55,7 @@ console.log ("test")
     var tile = document.createElement("span");
     tile.className = guessedLetters[i] + 'You Lost!';
     if ( guessedLetters[i] == " " ) {
-      tile.className = "bar"; 
+      tile.className = "words"; 
     } 
     tile.innerHTML = "<b>" + chosenLetters[i] + "</b>";
     wordContainer.appendChild(tile); 
