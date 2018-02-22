@@ -10,10 +10,14 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 // variables that are global 
 
 
-var chosenWord;
+var chosenWord = "";
 var chosenLetters = [];
 var guessedLetters = [];
-var incorrect;
+var spaces = 0;
+var incorrect = [];
+var letterguessed = "";
+
+
 var wins = 0;
 var losses = 0;
 
