@@ -20,6 +20,7 @@ var letterguessed = "";
 
 var wins = 0;
 var losses = 0;
+var startingGuesses = 12
 
 
 
@@ -30,7 +31,7 @@ console.log ("test")
 
   wordContainer.innerHTML = "";
 
-  document.getElementById("history").innerHTML = '';
+  document.getElementById("").innerHTML = startingGuesses;
 
   document.getElementById("points").innerHTML = wins;
   
@@ -48,7 +49,7 @@ console.log ("test")
   guessedLetters = [];
   
 
-  incorrect = 5; 
+  incorrect = []; 
   
 
   document.getElementById("incorrect").innerHTML = incorrect;
@@ -68,7 +69,7 @@ console.log ("test")
 
 
 
-function chosenLetters() {
+function gameinitalLoad() {
   if(incorrect > 0) {
     var event = window.event;
     var inputLetter = event.key;
@@ -102,7 +103,7 @@ function chosenLetters() {
 
         
               document.getElementById("won").style.display = "block";
-              countDown();
+              endGame();
 
           }
 
@@ -115,7 +116,7 @@ function chosenLetters() {
             document.getElementById("lost").style.display = "block";
             losses = losses + 1;
             document.getElementById("losses").innerHTML = losses;
-            countDown();
+            endGame();
 
           }
         } // end else
@@ -125,10 +126,10 @@ function chosenLetters() {
   }
 }
 
-function countDown() {
+function endGame() {
   var counter = 3;
   var countDown = document.getElementById("countDown");
-  countDown.innerHTML = "The next round will start in 3 seconds.";
+  countDown.innerHTML = "Start over! Next game starts in 3 seconds!";
   var id;
 
 
@@ -136,10 +137,10 @@ function countDown() {
       counter--;
       if(counter < 0) {
         countDown.innerHTML = '';
-        setUpRound();
+        gameinitalLoad();
         clearInterval(id);
       } else {
-          countDown.innerHTML = "The next round will start in " + counter.toString() + " seconds.";
+          countDown.innerHTML = "Next Round starts in " + counter.toString() + " seconds.";
       }
   }, 1000);
 }
