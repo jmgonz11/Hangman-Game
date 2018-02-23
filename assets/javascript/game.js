@@ -29,6 +29,11 @@ console.log ("test")
 
   var wordContainer = document.getElementById("words"); 
 
+  chosenWord = words[Math.floor(Math.random() * words.length)];
+
+  chosenLetters = chosenWord.split("");
+
+
   wordContainer.innerHTML = "";
 
   document.getElementById("").innerHTML = startingGuesses;
