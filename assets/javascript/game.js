@@ -25,7 +25,6 @@ var startingGuesses = 12
 
 
 function gameinitalLoad() { //starts the game
-console.log ("test")
 
   var wordContainer = document.getElementById("words"); 
 
@@ -36,6 +35,8 @@ console.log ("test")
 
   wordContainer.innerHTML = "";
 
+  //document.onkeyup = function(event)
+
   document.getElementById("").innerHTML = startingGuesses;
 
   document.getElementById("points").innerHTML = wins;
@@ -43,6 +44,11 @@ console.log ("test")
   document.getElementById("won").removeAttribute('style');
 
   document.getElementById("losses").innerHTML = losses;
+
+
+
+
+  }
 
   // document.getElementById("gameover").removeAttribute('style');
 
@@ -75,6 +81,9 @@ console.log ("test")
 
 
 function gameinitalLoad() {
+
+  document.onkeyup = function(event){
+
   if(incorrect > 0) {
     var event = window.event;
     var inputLetter = event.key;
@@ -125,11 +134,12 @@ function gameinitalLoad() {
 
           }
         } // end else
-
+      }
       }
     }
   }
 }
+
 
 function endGame() {
   var counter = 3;
