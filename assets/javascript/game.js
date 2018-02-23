@@ -24,7 +24,7 @@ var startingGuesses = 12
 
 
 
-function gameinitalLoad() {
+function gameinitalLoad() { //starts the game
 console.log ("test")
 
   var wordContainer = document.getElementById("words"); 
